@@ -1,5 +1,5 @@
 import turtle
-import media_tool
+from tools import media_tool
 from pydub import AudioSegment
 from pydub.playback import play
 
@@ -100,25 +100,25 @@ origin_x = 0 - SIZE * (WIDTH / 2 - 0.5)
 origin_y = 0 + SIZE * (HEIGHT / 2 - 0.5)
 
 # 添加素材
-skinFolder = '素材1/'
-tile_shapes = [skinFolder + '空.gif', skinFolder + '墙壁.gif', skinFolder + '通道.gif', skinFolder + '目标.gif',
-               skinFolder + '箱子.gif', skinFolder + '目标箱子.gif']
+skindir = 'skin1/'
+tile_shapes = [skindir + '空.gif', skindir + '墙壁.gif', skindir + '通道.gif', skindir + '目标.gif',
+               skindir + '箱子.gif', skindir + '目标箱子.gif']
 for i in tile_shapes:
     turtle.addshape(i)
-turtle.addshape(skinFolder + '编程猫.gif')
-turtle.addshape(skinFolder + '成功.gif')
-turtle.addshape(skinFolder + '通关.gif')
+turtle.addshape(skindir + '编程猫.gif')
+turtle.addshape(skindir + '成功.gif')
+turtle.addshape(skindir + '通关.gif')
 # 初始化砖块和玩家画笔
 tile = turtle.Pen()
 tile.penup()
 player = turtle.Pen()
-player.shape(skinFolder + '编程猫.gif')
+player.shape(skindir + '编程猫.gif')
 player.penup()
 
 movement_grid_x = 0
 movement_grid_y = 0
 
-success_sound = AudioSegment.from_file("success.wav", format="wav")
+success_sound = AudioSegment.from_file("resources/success.wav", format="wav")
 # play(success_sound)
 success_level = False
 
@@ -185,11 +185,11 @@ while True:
         win_or_lose = turtle.Pen()
         level_gap = True
         if level_num < len(level_store):
-            win_or_lose.shape(skinFolder + '成功.gif')
+            win_or_lose.shape(skindir + '成功.gif')
             success_level = True
             win_or_lose.onclick(next_level)
         else:
-            win_or_lose.shape(skinFolder + '通关.gif')
+            win_or_lose.shape(skindir + '通关.gif')
 
     turtle.update()
 
